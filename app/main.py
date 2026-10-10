@@ -1,17 +1,29 @@
 
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.schemas import MachineInput, PredictionResponse
 from app.model_service import predict_failure
 
+
+# Project directories
+BASE_DIR = Path(__file__).resolve().parent.parent
+FRONTEND_DIR = BASE_DIR / "frontend"
+
+
+# FastAPI application
 app = FastAPI(
     title="Predictive Maintenance API",
     description="API for predicting machine failures using a calibrated ML model.",
     version="1.0.0",
 )
 
-# Allow requests from the local frontend development server
+
+# CORS for local frontend development
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -26,19 +38,27 @@ app.add_middleware(
 )
 
 
-@app.get("/")
+# Serve CSS and JavaScript
+app.mount(
+    "/static",
+    StaticFiles(directory=str(FRONTEND_DIR)),
+    name="static",
+)
+
+
+# Serve frontend homepage
+@app.get("/", include_in_schema=False)
 def home():
-    return {
-        "message": "Predictive Maintenance API is running",
-        "status": "success",
-    }
+    return FileResponse(FRONTEND_DIR / "index.html")
 
 
+# Health check
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
 
 
+# Machine failure prediction
 @app.post("/predict", response_model=PredictionResponse)
 def predict(data: MachineInput):
     return predict_failure(

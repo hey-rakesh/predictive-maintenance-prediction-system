@@ -7,8 +7,8 @@
 
     <title>Predictive Maintenance AI</title>
 
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js" defer></script>
 </head>
 
 <body>
@@ -48,9 +48,7 @@
                 </div>
 
                 <div class="field">
-                    <label for="air-temperature">
-                        Air Temperature (K)
-                    </label>
+                    <label for="air-temperature">Air Temperature (K)</label>
                     <input
                         id="air-temperature"
                         type="number"
@@ -62,9 +60,7 @@
                 </div>
 
                 <div class="field">
-                    <label for="process-temperature">
-                        Process Temperature (K)
-                    </label>
+                    <label for="process-temperature">Process Temperature (K)</label>
                     <input
                         id="process-temperature"
                         type="number"
@@ -76,9 +72,7 @@
                 </div>
 
                 <div class="field">
-                    <label for="rotational-speed">
-                        Rotational Speed (RPM)
-                    </label>
+                    <label for="rotational-speed">Rotational Speed (RPM)</label>
                     <input
                         id="rotational-speed"
                         type="number"
@@ -120,7 +114,11 @@
             </button>
         </form>
 
-        <section id="result" class="result hidden" aria-live="polite">
+        <section
+            id="result"
+            class="result hidden"
+            aria-live="polite"
+        >
             <h2>Prediction Result</h2>
             <p id="prediction-message"></p>
             <p>
