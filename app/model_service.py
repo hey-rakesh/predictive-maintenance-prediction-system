@@ -35,7 +35,7 @@ def load_model():
 model, threshold = load_model()
 
 
-model, threshold = load_model()
+
 
 
 
