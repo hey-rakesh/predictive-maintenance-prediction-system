@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Predictive Maintenance AI</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <div>
+            <p class="eyebrow">INDUSTRIAL AI SYSTEM</p>
+            <h1>Predictive Maintenance</h1>
+            <p class="subtitle">
+                Monitor machine conditions and predict potential failures.
+            </p>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            AI Prediction System
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <h2>Machine Health Analysis</h2>
+            <p>
+                Enter the machine sensor readings to estimate its failure risk.
+            </p>
+        </section>
+
+        <form id="prediction-form">
+            <div class="form-grid">
+
+                <div class="field">
+                    <label for="machine-type">Machine Type</label>
+                    <select id="machine-type" required>
+                        <option value="L">L — Low</option>
+                        <option value="M" selected>M — Medium</option>
+                        <option value="H">H — High</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="air-temperature">
+                        Air Temperature (K)
+                    </label>
+                    <input
+                        id="air-temperature"
+                        type="number"
+                        step="any"
+                        min="0.01"
+                        value="298.1"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="process-temperature">
+                        Process Temperature (K)
+                    </label>
+                    <input
+                        id="process-temperature"
+                        type="number"
+                        step="any"
+                        min="0.01"
+                        value="308.6"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="rotational-speed">
+                        Rotational Speed (RPM)
+                    </label>
+                    <input
+                        id="rotational-speed"
+                        type="number"
+                        step="1"
+                        min="1"
+                        value="1500"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="torque">Torque (Nm)</label>
+                    <input
+                        id="torque"
+                        type="number"
+                        step="any"
+                        min="0"
+                        value="40"
+                        required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="tool-wear">Tool Wear (minutes)</label>
+                    <input
+                        id="tool-wear"
+                        type="number"
+                        step="1"
+                        min="0"
+                        value="100"
+                        required
+                    >
+                </div>
+
+            </div>
+
+            <button id="predict-button" type="submit">
+                Predict Machine Failure
+            </button>
+        </form>
+
+        <section id="result" class="result hidden" aria-live="polite">
+            <h2>Prediction Result</h2>
+            <p id="prediction-message"></p>
+            <p>
+                Failure Probability:
+                <strong id="failure-probability">—</strong>
+            </p>
+            <p>
+                Decision Threshold:
+                <strong id="threshold-value">—</strong>
+            </p>
+        </section>
+
+        <p id="error-message" class="error hidden" role="alert"></p>
+
+        <p class="disclaimer">
+            This is an ML-based estimate, not a guarantee of machine safety.
+        </p>
+    </main>
+
+    <footer>
+        Predictive Maintenance AI · Built with FastAPI and Machine Learning
+    </footer>
+</body>
+</html>
